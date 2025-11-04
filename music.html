@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DEF JAM MUSIC PLAYER</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <div class="logo">
+            <h1>DEF JAM</h1>
+        </div>
+        
+        <ul class="nav-links">
+            <li class="nav-item active"><i class="fas fa-home"></i> All Songs</li>
+            <li class="nav-item"><i class="fas fa-heart"></i> Liked Songs</li>
+            <li class="nav-item"><i class="fas fa-star"></i> Rated Songs</li>
+        </ul>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+        <div class="header">
+            <h2>DEF JAM MUSIC PLAYER</h2>
+            <div>
+                <button class="upload-btn" onclick="openUploadModal()">
+                    <i class="fas fa-upload"></i> Upload Music
+                </button>
+                <button class="admin-btn" onclick="openAdminModal()">
+                    <i class="fas fa-crown"></i> Admin Mode
+                </button>
+            </div>
+        </div>
+
+        <!-- SONGS GRID -->
+        <div class="music-grid" id="songsGrid">
+            <div>Loading songs...</div>
+        </div>
+    </div>
+
+    <!-- MUSIC PLAYER -->
+    <div class="music-player" id="musicPlayer">
+        <div class="player-controls">
+            <div class="now-playing">
+                <div class="now-playing-art">
+                    <i class="fas fa-music"></i>
+                </div>
+                <div class="now-playing-info">
+                    <div class="now-playing-title" id="nowPlayingTitle">No song playing</div>
+                    <div class="now-playing-artist" id="nowPlayingArtist">Select a song to play</div>
+                </div>
+            </div>
+            
+            <div class="progress-container">
+                <button class="player-btn" onclick="previousSong()">
+                    <i class="fas fa-step-backward"></i>
+                </button>
+                <button class="player-btn" onclick="togglePlay()" id="playPauseBtn">
+                    <i class="fas fa-play"></i>
+                </button>
+                <button class="player-btn" onclick="nextSong()">
+                    <i class="fas fa-step-forward"></i>
+                </button>
+                
+                <div class="progress-bar">
+                    <div class="progress" id="progress"></div>
+                </div>
+                
+                <div class="time-display" id="timeDisplay">0:00 / 0:00</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- UPLOAD MODAL -->
+    <div class="modal" id="uploadModal">
+        <div class="modal-content">
+            <h2>Upload New Song</h2>
+            <form id="uploadForm">
+                <div class="form-group">
+                    <input type="text" id="songTitle" placeholder="Song Title" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="songArtist" placeholder="Artist Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="file" id="audioFile" accept="audio/*" required>
+                </div>
+                <button type="submit" class="upload-btn">Upload Song</button>
+                <button type="button" class="upload-btn" onclick="closeUploadModal()" style="background: #666;">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ADMIN MODAL -->
+    <div class="modal" id="adminModal">
+        <div class="modal-content">
+            <h2>🔐 Admin Access</h2>
+            <div class="form-group">
+                <input type="password" id="adminPassword" placeholder="Enter Passcode">
+            </div>
+            <button class="upload-btn" onclick="checkAdminPassword()">Enter Admin Mode</button>
+            <button class="upload-btn" onclick="closeAdminModal()" style="background: #666;">Cancel</button>
+        </div>
+    </div>
+
+    <!-- AUDIO ELEMENT -->
+    <audio id="audioElement"></audio>
+
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="script.js"></script>
+</body>
+</html>

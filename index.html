@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DEF JAM RECORD LABEL</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+            color: white;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .music-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255,0,128,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(255,255,0,0.05) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 0.8; }
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            width: 400px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo h1 {
+            font-size: 2.5em;
+            font-weight: 900;
+            background: linear-gradient(45deg, #ff0080, #00ffff, #ffff00);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .logo p {
+            color: #888;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        .tabs {
+            display: flex;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 4px;
+            margin-bottom: 25px;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 12px;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .tab.active {
+            background: linear-gradient(45deg, #ff0080, #00ffff);
+            color: black;
+        }
+
+        .form-container {
+            position: relative;
+        }
+
+        .form {
+            display: none;
+        }
+
+        .form.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 8px;
+            color: white;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #00ffff;
+            box-shadow: 0 0 10px rgba(0,255,255,0.3);
+        }
+
+        .input-group input::placeholder {
+            color: #888;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, #ff0080, #00ffff);
+            border: none;
+            border-radius: 8px;
+            color: black;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255,0,128,0.3);
+        }
+
+        .message {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 14px;
+            display: none;
+        }
+
+        .message.success {
+            background: rgba(0,255,0,0.1);
+            color: #00ff00;
+            display: block;
+        }
+
+        .message.error {
+            background: rgba(255,0,0,0.1);
+            color: #ff4444;
+            display: block;
+        }
+
+        .vinyl {
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(45deg, #333, #000);
+            border-radius: 50%;
+            animation: spin 4s linear infinite;
+        }
+
+        .vinyl::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 30px;
+            height: 30px;
+            background: #ff0080;
+            border-radius: 50%;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="music-bg"></div>
+    
+    <div class="container">
+        <div class="vinyl"></div>
+        
+        <div class="logo">
+            <h1>DEF JAM</h1>
+            <p>RECORD LABEL</p>
+        </div>
+
+        <div class="tabs">
+            <div class="tab active" onclick="showTab('login')">LOGIN</div>
+            <div class="tab" onclick="showTab('signup')">SIGN UP</div>
+        </div>
+
+        <div class="form-container">
+            <!-- LOGIN FORM -->
+            <form class="form active" id="loginForm">
+                <div class="input-group">
+                    <input type="text" placeholder="USERNAME" id="loginUsername" required>
+                </div>
+                <div class="input-group">
+                    <input type="password" placeholder="PASSWORD" id="loginPassword" required>
+                </div>
+                <button type="submit" class="btn">ENTER STUDIO</button>
+                <div class="message" id="loginMessage"></div>
+            </form>
+
+            <!-- SIGNUP FORM -->
+            <form class="form" id="signupForm">
+                <div class="input-group">
+                    <input type="text" placeholder="CREATE USERNAME" id="signupUsername" required>
+                </div>
+                <div class="input-group">
+                    <input type="password" placeholder="CREATE PASSWORD" id="signupPassword" required>
+                </div>
+                <button type="submit" class="btn">JOIN THE LABEL</button>
+                <div class="message" id="signupMessage"></div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+
+    // Simple frontend user storage
+    let users = JSON.parse(localStorage.getItem('defjam_users')) || {};
+
+    function showTab(tabName) {
+        document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+        document.querySelectorAll('.form').forEach(form => form.classList.remove('active'));
+        
+        document.querySelector(`.tab:nth-child(${tabName === 'login' ? '1' : '2'})`).classList.add('active');
+        document.getElementById(tabName + 'Form').classList.add('active');
+    }
+
+    // Login form handler - NO BACKEND NEEDED
+    document.getElementById('loginForm').onsubmit = function(e) {
+        e.preventDefault();
+        const username = document.getElementById('loginUsername').value;
+        const password = document.getElementById('loginPassword').value;
+        
+        const message = document.getElementById('loginMessage');
+        
+        if (users[username] && users[username] === password) {
+            message.className = 'message success';
+            message.textContent = '🎵 Welcome to DEF JAM!';
+            setTimeout(function() {
+                window.location.href = 'music.html';
+            }, 1000);
+        } else {
+            message.className = 'message error';
+            message.textContent = '❌ Wrong username or password';
+        }
+    };
+
+    // Signup form handler - NO BACKEND NEEDED
+    document.getElementById('signupForm').onsubmit = function(e) {
+        e.preventDefault();
+        const username = document.getElementById('signupUsername').value;
+        const password = document.getElementById('signupPassword').value;
+        
+        const message = document.getElementById('signupMessage');
+        
+        if (users[username]) {
+            message.className = 'message error';
+            message.textContent = '❌ Username already exists';
+        } else {
+            users[username] = password;
+            localStorage.setItem('defjam_users', JSON.stringify(users));
+            message.className = 'message success';
+            message.textContent = '✅ Account created! Switch to login.';
+            showTab('login');
+        }
+    };
+</script>
+    </script>
+</body>
+</html>         
