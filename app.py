@@ -6,6 +6,20 @@ from werkzeug.utils import secure_filename
 app = Flask(__name__)
 CORS(app)  # This fixes "failed to fetch"
 
+from flask import Flask, send_file  # Remove render_template
+
+@app.route('/')
+def index():
+    return send_file('index.html')
+
+@app.route('/music')
+def music():
+    return send_file('music.html')
+
+@app.route('/login') 
+def login():
+    return send_file('login.html')
+
 UPLOAD_FOLDER = 'uploads'
 ALLOWED_EXTENSIONS = {'mp3', 'wav', 'ogg', 'm4a'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
