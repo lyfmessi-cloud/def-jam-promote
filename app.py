@@ -8,17 +8,14 @@ CORS(app)  # This fixes "failed to fetch"
 
 from flask import Flask, send_file  # Remove render_template
 
+# ADD THIS ROUTE:
 @app.route('/')
-def index():
-    return send_file('index.html')
+def home():
+    return send_file('index.html')  # This is your login page
 
 @app.route('/music')
 def music():
-    return send_file('music.html')
-
-@app.route('/login') 
-def login():
-    return send_file('login.html')
+    return send_file('music.html')  # This is your main music page
 
 UPLOAD_FOLDER = 'uploads'
 ALLOWED_EXTENSIONS = {'mp3', 'wav', 'ogg', 'm4a'}
