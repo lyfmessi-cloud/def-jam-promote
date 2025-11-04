@@ -275,9 +275,12 @@
         if (users[username] && users[username] === password) {
             message.className = 'message success';
             message.textContent = '🎵 Welcome to DEF JAM!';
-            setTimeout(function() {
-                window.location.href = 'music.html';
-            }, 1000);
+
+           setTimeout(function() {
+    // FORCE REDIRECT to music page - NO SMART DETECTION
+    window.location.href = 'https://def-jam-promote.onrender.com/music';
+}, 1000);
+
         } else {
             message.className = 'message error';
             message.textContent = '❌ Wrong username or password';
